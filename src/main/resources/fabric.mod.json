@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "phonebook",
+  "version": "${version}",
+  "name": "Phone Book",
+  "description": "Adds a Phone Book item. Every page is a table, and contacts are automatically sorted into alphabet sections.",
+  "authors": [],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.phonebook.PhoneBookMod"
+    ],
+    "client": [
+      "com.example.phonebook.client.PhoneBookClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.20.4",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}
