@@ -3,9 +3,9 @@
   "id": "phonebook",
   "version": "${version}",
   "name": "Phone Book",
-  "description": "Adds a Phone Book item. Every page is a table, and contacts are automatically sorted into alphabet sections.",
-  "authors": [],
-  "license": "MIT",
+  "description": "Adds a Phone Book item. Every page is a table, and contacts are automatically sorted into alphabet sections. Created with the help of AI.",
+  "authors": ["Browndog7912"],
+  "license": "GNU General Public License v3.0",
   "environment": "*",
   "entrypoints": {
     "main": [
