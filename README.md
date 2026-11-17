@@ -20,6 +20,19 @@ Also adds a **Checklist** item (Paper + Ink Sac + Stick, shapeless; Tools tab). 
 - A progress bar and "done / total" counter sit at the top; scroll or use `<` `>` for more pages.
 - Tasks are stored in the item itself, so each checklist is its own list.
 
+## Notepad
+Also adds a **Notepad** item (2 Paper + String, shapeless; Tools tab). Right-click to open a free-form
+multi-line text box (up to 2000 characters). It saves automatically whenever you close it, and the item
+tooltip shows the first line of the note.
+
+## Calendar
+Also adds a **Calendar** item (Paper + Clock + Ink Sac, shapeless; Tools tab). Right-click to open a
+month view using today's real-world date.
+- `<` `>` (or the mouse wheel over the grid) change month; **Today** jumps back to the current date.
+- Click a day to select it. Days with events show a red dot, and today has a blue outline.
+- The selected day's events are listed below. Type text and press **Add** (or Enter); click the **x** to delete one.
+- Scroll over the event list if a day has more than four events.
+
 ## Build
 Requires JDK 17.
 

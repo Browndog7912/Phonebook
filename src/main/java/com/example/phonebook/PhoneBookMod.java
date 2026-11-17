@@ -18,23 +18,22 @@ import java.util.List;
 public class PhoneBookMod implements ModInitializer {
 	public static final String MOD_ID = "phonebook";
 
-	public static final Item PHONE_BOOK = Registry.register(
-			Registries.ITEM,
-			new Identifier(MOD_ID, "phone_book"),
-			new PhoneBookItem(new FabricItemSettings().maxCount(1))
-	);
+	public static final Item PHONE_BOOK = register("phone_book", new PhoneBookItem(new FabricItemSettings().maxCount(1)));
+	public static final Item CHECKLIST = register("checklist", new ChecklistItem(new FabricItemSettings().maxCount(1)));
+	public static final Item NOTEPAD = register("notepad", new NotepadItem(new FabricItemSettings().maxCount(1)));
+	public static final Item CALENDAR = register("calendar", new CalendarItem(new FabricItemSettings().maxCount(1)));
 
-	public static final Item CHECKLIST = Registry.register(
-			Registries.ITEM,
-			new Identifier(MOD_ID, "checklist"),
-			new ChecklistItem(new FabricItemSettings().maxCount(1))
-	);
+	private static Item register(String id, Item item) {
+		return Registry.register(Registries.ITEM, new Identifier(MOD_ID, id), item);
+	}
 
 	@Override
 	public void onInitialize() {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
 			entries.add(PHONE_BOOK);
 			entries.add(CHECKLIST);
+			entries.add(NOTEPAD);
+			entries.add(CALENDAR);
 		});
 
 		// Client sends the full contact list; the server validates, sorts and stores it on the held book.
@@ -75,6 +74,39 @@ public class PhoneBookMod implements ModInitializer {
 				ItemStack stack = player.getStackInHand(hand);
 				if (stack.getItem() instanceof ChecklistItem) {
 					ChecklistData.write(stack, list);
+				}
+			});
+		});
+
+		// Client sends the whole note text; the server clamps it and stores it on the held notepad.
+		ServerPlayNetworking.registerGlobalReceiver(PhoneBookNetworking.SAVE_NOTEPAD, (server, player, handler, buf, responseSender) -> {
+			Hand hand = buf.readEnumConstant(Hand.class);
+			String text = buf.readString(NotepadData.MAX_CHARS * 2);
+			server.execute(() -> {
+				ItemStack stack = player.getStackInHand(hand);
+				if (stack.getItem() instanceof NotepadItem) {
+					NotepadData.write(stack, text);
+				}
+			});
+		});
+
+		// Client sends the full event list; the server validates, sorts by date and stores it on the held calendar.
+		ServerPlayNetworking.registerGlobalReceiver(PhoneBookNetworking.SAVE_CALENDAR, (server, player, handler, buf, responseSender) -> {
+			Hand hand = buf.readEnumConstant(Hand.class);
+			int count = buf.readVarInt();
+			if (count < 0 || count > CalendarData.MAX_EVENTS) {
+				return;
+			}
+			List<CalendarData.Event> list = new ArrayList<>(count);
+			for (int i = 0; i < count; i++) {
+				int date = buf.readInt();
+				String text = buf.readString(96);
+				list.add(new CalendarData.Event(date, text));
+			}
+			server.execute(() -> {
+				ItemStack stack = player.getStackInHand(hand);
+				if (stack.getItem() instanceof CalendarItem) {
+					CalendarData.write(stack, list);
 				}
 			});
 		});

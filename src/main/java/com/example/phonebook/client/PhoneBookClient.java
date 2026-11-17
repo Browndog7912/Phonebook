@@ -1,6 +1,8 @@
 package com.example.phonebook.client;
 
+import com.example.phonebook.CalendarItem;
 import com.example.phonebook.ChecklistItem;
+import com.example.phonebook.NotepadItem;
 import com.example.phonebook.PhoneBookItem;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
@@ -12,5 +14,9 @@ public class PhoneBookClient implements ClientModInitializer {
 				MinecraftClient.getInstance().setScreen(new PhoneBookScreen(stack, hand));
 		ChecklistItem.openScreen = (stack, hand) ->
 				MinecraftClient.getInstance().setScreen(new ChecklistScreen(stack, hand));
+		NotepadItem.openScreen = (stack, hand) ->
+				MinecraftClient.getInstance().setScreen(new NotepadScreen(stack, hand));
+		CalendarItem.openScreen = (stack, hand) ->
+				MinecraftClient.getInstance().setScreen(new CalendarScreen(stack, hand));
 	}
 }

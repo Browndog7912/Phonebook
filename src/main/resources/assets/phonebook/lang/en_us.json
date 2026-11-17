@@ -1,6 +1,11 @@
 {
   "item.phonebook.phone_book": "Phone Book",
   "item.phonebook.checklist": "Checklist",
+  "item.phonebook.notepad": "Notepad",
+  "item.phonebook.calendar": "Calendar",
   "tooltip.phonebook.contacts": "%s contact(s)",
-  "tooltip.phonebook.checklist_progress": "%s / %s done"
+  "tooltip.phonebook.checklist_progress": "%s / %s done",
+  "tooltip.phonebook.notepad_empty": "Empty",
+  "tooltip.phonebook.calendar_events": "%s event(s)",
+  "tooltip.phonebook.calendar_today": "%s event(s) today"
 }
