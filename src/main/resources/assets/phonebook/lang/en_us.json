@@ -1,4 +1,6 @@
 {
   "item.phonebook.phone_book": "Phone Book",
-  "tooltip.phonebook.contacts": "%s contact(s)"
+  "item.phonebook.checklist": "Checklist",
+  "tooltip.phonebook.contacts": "%s contact(s)",
+  "tooltip.phonebook.checklist_progress": "%s / %s done"
 }

@@ -1,0 +1,49 @@
+name: Build
+
+on:
+  push:
+    branches: [main, master]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write   # needed only for publishing a Release on tags
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      # Installs Gradle 8.5 itself, so no gradle wrapper is required in the repo.
+      - uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: 8.5
+
+      - name: Build
+        run: gradle build --console=plain
+
+      - name: Upload mod jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: phonebook-mod
+          # the remapped mod jar only (not the -sources jar)
+          path: |
+            build/libs/*.jar
+            !build/libs/*-sources.jar
+          if-no-files-found: error
+
+      # Pushing a tag like v1.0.0 also publishes the jar as a GitHub Release.
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build/libs/*.jar
+            !build/libs/*-sources.jar

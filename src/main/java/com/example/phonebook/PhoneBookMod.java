@@ -24,9 +24,18 @@ public class PhoneBookMod implements ModInitializer {
 			new PhoneBookItem(new FabricItemSettings().maxCount(1))
 	);
 
+	public static final Item CHECKLIST = Registry.register(
+			Registries.ITEM,
+			new Identifier(MOD_ID, "checklist"),
+			new ChecklistItem(new FabricItemSettings().maxCount(1))
+	);
+
 	@Override
 	public void onInitialize() {
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> entries.add(PHONE_BOOK));
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
+			entries.add(PHONE_BOOK);
+			entries.add(CHECKLIST);
+		});
 
 		// Client sends the full contact list; the server validates, sorts and stores it on the held book.
 		ServerPlayNetworking.registerGlobalReceiver(PhoneBookNetworking.SAVE, (server, player, handler, buf, responseSender) -> {
@@ -45,6 +54,27 @@ public class PhoneBookMod implements ModInitializer {
 				ItemStack stack = player.getStackInHand(hand);
 				if (stack.getItem() instanceof PhoneBookItem) {
 					PhoneBookData.write(stack, list);
+				}
+			});
+		});
+
+		// Client sends the full checklist; the server validates and stores it on the held checklist.
+		ServerPlayNetworking.registerGlobalReceiver(PhoneBookNetworking.SAVE_CHECKLIST, (server, player, handler, buf, responseSender) -> {
+			Hand hand = buf.readEnumConstant(Hand.class);
+			int count = buf.readVarInt();
+			if (count < 0 || count > ChecklistData.MAX_ENTRIES) {
+				return;
+			}
+			List<ChecklistData.Entry> list = new ArrayList<>(count);
+			for (int i = 0; i < count; i++) {
+				String text = buf.readString(96);
+				boolean done = buf.readBoolean();
+				list.add(new ChecklistData.Entry(text, done));
+			}
+			server.execute(() -> {
+				ItemStack stack = player.getStackInHand(hand);
+				if (stack.getItem() instanceof ChecklistItem) {
+					ChecklistData.write(stack, list);
 				}
 			});
 		});
