@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:clock" },
+    { "item": "minecraft:stick" }
+  ],
+  "result": {
+    "item": "phonebook:stopwatch"
+  }
+}

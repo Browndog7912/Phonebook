@@ -4,8 +4,8 @@
   "version": "${version}",
   "name": "Phone Book",
   "description": "Adds a Phone Book item. Every page is a table, and contacts are automatically sorted into alphabet sections.",
-  "authors": [],
-  "license": "MIT",
+  "authors": ["Browndog7912"],
+  "license": "GNU",
   "environment": "*",
   "entrypoints": {
     "main": [

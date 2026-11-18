@@ -3,9 +3,21 @@
   "item.phonebook.checklist": "Checklist",
   "item.phonebook.notepad": "Notepad",
   "item.phonebook.calendar": "Calendar",
+  "item.phonebook.clock": "Clock",
+  "item.phonebook.stopwatch": "Stopwatch",
+  "item.phonebook.timer": "Timer",
   "tooltip.phonebook.contacts": "%s contact(s)",
   "tooltip.phonebook.checklist_progress": "%s / %s done",
   "tooltip.phonebook.notepad_empty": "Empty",
   "tooltip.phonebook.calendar_events": "%s event(s)",
-  "tooltip.phonebook.calendar_today": "%s event(s) today"
+  "tooltip.phonebook.calendar_today": "%s event(s) today",
+  "tooltip.phonebook.clock_game": "Game time: %s",
+  "tooltip.phonebook.clock_real": "Real time: %s",
+  "tooltip.phonebook.stopwatch_running": "Running: %s",
+  "tooltip.phonebook.stopwatch_stopped": "Stopped: %s",
+  "tooltip.phonebook.stopwatch_ready": "Ready",
+  "tooltip.phonebook.timer_unset": "No time set",
+  "tooltip.phonebook.timer_set": "Set for %s",
+  "tooltip.phonebook.timer_running": "%s left",
+  "tooltip.phonebook.timer_finished": "Time's up!"
 }
