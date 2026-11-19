@@ -26,6 +26,7 @@ public class PhoneBookMod implements ModInitializer {
 	public static final Item CLOCK = register("clock", new ClockItem(new FabricItemSettings().maxCount(1)));
 	public static final Item STOPWATCH = register("stopwatch", new StopwatchItem(new FabricItemSettings().maxCount(1)));
 	public static final Item TIMER = register("timer", new TimerItem(new FabricItemSettings().maxCount(1)));
+	public static final Item CALCULATOR = register("calculator", new CalculatorItem(new FabricItemSettings().maxCount(1)));
 
 	private static Item register(String id, Item item) {
 		return Registry.register(Registries.ITEM, new Identifier(MOD_ID, id), item);
@@ -49,6 +50,7 @@ public class PhoneBookMod implements ModInitializer {
 			entries.add(CLOCK);
 			entries.add(STOPWATCH);
 			entries.add(TIMER);
+			entries.add(CALCULATOR);
 		});
 
 		// Client sends the full contact list; the server validates, sorts and stores it on the held book.

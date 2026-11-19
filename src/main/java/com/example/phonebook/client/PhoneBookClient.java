@@ -1,5 +1,6 @@
 package com.example.phonebook.client;
 
+import com.example.phonebook.CalculatorItem;
 import com.example.phonebook.CalendarItem;
 import com.example.phonebook.ChecklistItem;
 import com.example.phonebook.ClockItem;
@@ -27,6 +28,9 @@ public class PhoneBookClient implements ClientModInitializer {
 				MinecraftClient.getInstance().setScreen(new StopwatchScreen(hand));
 		TimerItem.openScreen = (stack, hand) ->
 				MinecraftClient.getInstance().setScreen(new TimerScreen(hand));
+
+		CalculatorItem.openScreen = (stack, hand) ->
+				MinecraftClient.getInstance().setScreen(new CalculatorScreen());
 
 		TimerAlerts.register();
 	}

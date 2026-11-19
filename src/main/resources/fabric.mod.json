@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "id": "phonebook",
   "version": "${version}",
-  "name": "Phone Book",
-  "description": "Adds a Phone Book item. Every page is a table, and contacts are automatically sorted into alphabet sections.",
+  "name": "Utilitys",
+  "description": "Adds utility items to Minecraft Like a Phonebok and more",
   "authors": ["Browndog7912"],
-  "license": "GNU",
+  "license": "GNU GENERAL PUBLIC LICENSE",
   "environment": "*",
   "entrypoints": {
     "main": [

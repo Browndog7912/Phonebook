@@ -6,6 +6,7 @@
   "item.phonebook.clock": "Clock",
   "item.phonebook.stopwatch": "Stopwatch",
   "item.phonebook.timer": "Timer",
+  "item.phonebook.calculator": "Calculator",
   "tooltip.phonebook.contacts": "%s contact(s)",
   "tooltip.phonebook.checklist_progress": "%s / %s done",
   "tooltip.phonebook.notepad_empty": "Empty",
